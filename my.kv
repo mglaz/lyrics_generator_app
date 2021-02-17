@@ -1,0 +1,56 @@
+ScreenManager:
+    UI:
+    Result:
+
+
+<UI>
+    name: 'first'
+
+    BoxLayout:
+        orientation: "vertical"
+        padding: 10
+
+        MDLabel:
+            text: "This is a Rap Lyrics Generator, fill in the required parameters below and then click the 'Generate Lyrics' button"
+            font_size: 30
+            pos_hint: {'center_x':0.5,'center_y':1}
+            id: label
+
+        MDTextField:
+            hint_text: "Type the first word for the generator"
+            pos_hint: {'center_x':0.5,'center_y':0.9}
+            id: word
+
+        MDTextField:
+            hint_text: "Type the temperature value between 0.1 and 2"
+            pos_hint: {'center_y':0.7}
+            input_filter: 'float'
+            id: temp
+
+        MDTextField:
+            hint_text: "Type the number of characters to be generated"
+            pos_hint: {'center_y':0.5}
+            input_filter: 'float'
+            id: num
+
+        MDRectangleFlatButton:
+            text: "Generate Lyrics"
+            pos_hint: {'center_x':0.5,'center_y':0.3}
+            #on_press: app.get_temp()
+            #on_press: app.get_num()
+            #on_press: app.get_word()
+            on_press: app.generate_text()
+            on_release: root.manager.current = 'second'
+
+
+<Result>
+    name: 'second'
+
+    BoxLayout:
+        orientation: "vertical"
+        padding: 10
+
+        MDRectangleFlatButton:
+            text: "Generate them!"
+            pos_hint: {'center_x':0.5,'center_y':0.3}
+            on_press: app.print_lyrics()
